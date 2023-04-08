@@ -9,9 +9,93 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 
     <title>Document</title>
+
+    <style>
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            padding: 20px;
+            color: white;
+            /* border-radius: 5px; */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-input {
+            background-color: transparent;
+        }
+    </style>
 </head>
 
-<body></body>
+<body>
+
+
+
+
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 landing left-container" style="min-height: 100vh;">
+
+
+
+                <div class="container-fluid">
+                    <div class="row  p-3">
+                        <div class="col-md-6">
+                            <h3 class="mb-0">Local<strong>Leaf</strong></h3>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="col-md-6 landing right-container" style="min-height: 100vh;">
+                <div class="row">
+                    <div class="col-md-6 offset-md-4">
+                        <div class="login-form">
+                            <h2>Login</h2>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Email</label>
+                                    <input type="text" class="form-control login-input" id="username" placeholder="john-doe@gmail.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control login-input" id="password" placeholder="Enter password">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
 </body>
+
 
 </html>

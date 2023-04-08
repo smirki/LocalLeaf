@@ -1,3 +1,19 @@
 body {
-    background-color: #30322F;
+    background-color: black;
 }
+
+.landing.right-container {
+    /* background-image: linear-gradient(to top, #108610, #000000);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: black;
+}
+
+.landing.left-container {
+    background-image: url("https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+}
+
+.color-overlay {}
