@@ -1,152 +1,123 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Sign Up</title>
-    <style>
-        body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #222;
-    background-color: #f0f0f0;
-  }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-  }
-      .slider {
-        display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-      }
-      
-      .slider button {
-        padding: 10px 20px;
-    margin-right: 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #009688;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-      }
-      .slider button:hover {
-    background-color: #00796b;
-  }
-      
-  .slider button.active {
-    background-color: #0b250c;
-  }
-      
-  form.signup-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
-  }
-      
-      form.signup-form.active {
-        display: flex;
-        width: 200px;
-      }
+<html lang="en">
 
-      form.signup-form label {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #009688;
-  }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://unpkg.com/@popperjs/core@2">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 
-  form.signup-form input[type="text"],
-  form.signup-form input[type="email"],
-  form.signup-form input[type="password"],
-  form.signup-form input[type="tel"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
-  }
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <title>Document</title>
+</head>
 
-  form.signup-form input[type="submit"] {
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #009688;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
+<body>
 
-  form.signup-form input[type="submit"]:hover {
-    background-color: #00796b;
-  }
-    </style>
-  </head>
-  
-  <body>
-    <div class="container">
-    <div class="slider">
-      <button class="customer active" onclick="showForm('customer')">Customer Sign Up</button>
-      <button class="store" onclick="showForm('store')">Store Sign Up</button>
-    </div>
-    
-    <form class="signup-form customer active">
-        <img src="{{url_for('static', filename='customer-image.jpg')}}" align="middle" />
-        <label for="customer-name">Name:</label>
-        <input type="text" id="customer-name" name="customer-name" required>
-        <label for="customer-email">Email:</label>
-        <input type="email" id="customer-email" name="customer-email" required>
-        <label for="customer-password">Password:</label>
-        <input type="password" id="customer-password" name="customer-password" minlength="8" required>
-        <label for="customer-age">Age:</label>
-        <input type="text" id="customer-age" name="customer-age" required>
-        <label for="customer-phone">Phone:</label>
-        <input type="tel" id="customer-phone" name="customer-phone" required>
-        <input type="submit" value="Sign Up">
-    </form>
-    
-    <form class="signup-form store">
-        <img src="{{url_for('static', filename='store-image.jpg')}}" align="middle" />
-        <label for="store-name">Store Name:</label>
-        <input type="text" id="store-name" name="store-name" required>
-        <label for="store-email">Email:</label>
-        <input type="email" id="store-email" name="store-email" required>
-        <label for="store-password">Password:</label>
-        <input type="password" id="store-password" name="store-password" minlength="8" required>
-        <label for="store-address">Store Address:</label>
-        <input type="text" id="store-address" name="store-address" required>
-        <label for="store-phone">Phone:</label>
-        <input type="tel" id="store-phone" name="store-phone" required>
-        <input type="submit" value="Sign Up">
+    <body>
+        <!-- partial:index.partial.html -->
+        <!-- Multi step form -->
+        <section class="multi_step_form">
+            <form id="msform">
+                <!-- Tittle -->
+                <div class="tittle">
+                    <h2>Verification Process</h2>
+                    <p>In order to use this service, you have to complete this verification process</p>
+                </div>
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active">Verify Phone</li>
+                    <li>Upload Documents</li>
+                    <li>Security Questions</li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset>
+                    <h3>Setup your phone</h3>
+                    <h6>We will send you a SMS. Input the code to verify.</h6>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="tel" id="phone" class="form-control" placeholder="+880">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="1123456789">
+                        </div>
+                    </div>
+                    <div class="done_text">
+                        <a href="#" class="don_icon"><i class="ion-android-done"></i></a>
+                        <h6>A secret code is sent to your phone. <br>Please enter it here.</h6>
+                    </div>
+                    <div class="code_group">
+                        <input type="text" class="form-control" placeholder="0">
+                        <input type="text" class="form-control" placeholder="0">
+                        <input type="text" class="form-control" placeholder="0">
+                        <input type="text" class="form-control" placeholder="0">
+                    </div>
+                    <button type="button" class="action-button previous_button">Back</button>
+                    <button type="button" class="next action-button">Continue</button>
+                </fieldset>
+                <fieldset>
+                    <h3>Verify Your Identity</h3>
+                    <h6>Please upload any of these documents to verify your Identity.</h6>
+                    <div class="passport">
+                        <h4>Govt. ID card <br>PassPort <br>Driving License.</h4>
+                        <a href="#" class="don_icon"><i class="ion-android-done"></i></a>
+                    </div>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="upload">
+                            <label class="custom-file-label" for="upload"><i
+                                    class="ion-android-cloud-outline"></i>Choose file</label>
+                        </div>
+                    </div>
+                    <ul class="file_added">
+                        <li>File Added:</li>
+                        <li><a href="#"><i class="ion-paperclip"></i>national_id_card.png</a></li>
+                        <li><a href="#"><i class="ion-paperclip"></i>national_id_card_back.png</a></li>
+                    </ul>
+                    <button type="button" class="action-button previous previous_button">Back</button>
+                    <button type="button" class="next action-button">Continue</button>
+                </fieldset>
+                <fieldset>
+                    <h3>Create Security Questions</h3>
+                    <h6>Please update your account with security questions</h6>
+                    <div class="form-group">
+                        <select class="product_select">
+                            <option data-display="1. Choose A Question">1. Choose A Question</option>
+                            <option>2. Choose A Question</option>
+                            <option>3. Choose A Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group fg_2">
+                        <input type="text" class="form-control" placeholder="Anwser here:">
+                    </div>
+                    <div class="form-group">
+                        <select class="product_select">
+                            <option data-display="1. Choose A Question">1. Choose A Question</option>
+                            <option>2. Choose A Question</option>
+                            <option>3. Choose A Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group fg_3">
+                        <input type="text" class="form-control" placeholder="Anwser here:">
+                    </div>
+                    <button type="button" class="action-button previous previous_button">Back</button>
+                    <a href="#" class="action-button">Finish</a>
+                </fieldset>
+            </form>
+        </section>
+        <!-- End Multi step form -->
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/js/intlTelInput.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js'></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='js/stepper.js') }}">
+    </body>
 
-    </form>
-    
-    <script>
-      function showForm(type) {
-        var forms = document.getElementsByClassName("signup-form");
-        for (var i = 0; i < forms.length; i++) {
-          forms[i].classList.remove("active");
-        }
-        document.querySelector(".slider button.active").classList.remove("active");
-        document.querySelector(".slider button." + type).classList.add("active");
-        document.querySelector(".signup-form." + type).classList.add("active");
-      }
-    </script>
-  </body>
 </html>
