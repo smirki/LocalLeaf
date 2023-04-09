@@ -3,9 +3,6 @@ body {
 }
 
 .landing.right-container {
-    /* background-image: linear-gradient(to top, #108610, #000000);
-    background-repeat: no-repeat;
-    background-size: cover; */
     background-color: #2a2b38;
 }
 
@@ -15,8 +12,6 @@ body {
     background-position: center;
     opacity: 0.3;
 }
-
-.color-overlay {}
 
 .logo {
     vertical-align: middle;
