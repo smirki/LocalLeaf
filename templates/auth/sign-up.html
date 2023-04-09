@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.1/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-container .form-group {
+            display: none;
+        }
+        
+        .form-container .form-group.active {
+            display: block;
+        }
+        
+        .form-container .form-group.active .form-card {
+            transform: translateX(0%);
+        }
+        
+        .form-container .form-card {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-card">
+            <h2>Sign Up</h2>
+            <p>Please select your role:</p>
+            <div class="form-group" id="clientForm">
+                <label for="clientName">Client Name:</label>
+                <input type="text" id="clientName" class="form-control" placeholder="Enter your name">
+                <!-- Add additional client form fields here -->
+            </div>
+            <div class="form-group" id="customerForm">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" class="form-control" placeholder="Enter your name">
+                <!-- Add additional customer form fields here -->
+            </div>
+            <button class="btn btn-primary" onclick="showClientForm()">I'm a Client</button>
+            <button class="btn btn-primary" onclick="showCustomerForm()">I'm a Customer</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to show client form and hide customer form
+        function showClientForm() {
+            document.getElementById('clientForm').classList.add('active');
+            document.getElementById('customerForm').classList.remove('active');
+            document.getElementById('clientForm').querySelector('.form-card').style.transform = 'translateX(0%)';
+        }
+
+        // Function to show customer form and hide client form
+        function showCustomerForm() {
+            document.getElementById('clientForm').classList.remove('active');
+            document.getElementById('customerForm').classList.add('active');
+            document.getElementById('customerForm').querySelector('.form-card').style.transform = 'translateX(0%)';
+        }
+    </script>
+</body>
+
+</html>
