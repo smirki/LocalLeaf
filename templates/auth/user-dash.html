@@ -84,21 +84,41 @@
         </div>
     </div> -->
 
-    <button id="addButton" class="add-button">+</button>
-    <div id="popup" class="popup">
-        <form id="form" class="form">
-            <label for="slider">Add Into Wallet:</label>
-            <input type="range" id="slider" class="slider" min="0" max="100" value="50">
-            <output id="sliderValue" class="slider-value">50</output>
-            <button type="submit" id="submit" class="submit-button">Submit</button>
-        </form>
-
+    <button id="addButton" class="btn btn-primary rounded-circle" style="position: fixed; bottom: 20px; right: 20px;">
+		+
+	</button>
+    <div class="container mt-5">
+        <div class="row" id="cardRow"></div>
     </div>
+
+    <div id="popup" class="popup">
+        <h5>Create a Card</h5>
+        <form id="form" class="form">
+            <label for="cardTitleInput">Card Title:</label>
+            <input type="text" id="cardTitleInput" class="card-title-input form-control" required>
+            <label for="slider">Slider Value:</label>
+            <input type="range" id="slider" class="slider form-control" min="0" max="100" value="50">
+            <output id="sliderValue" class="slider-value">50</output>
+            <button type="submit" id="submit" class="submit-button btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+
+    <!-- <form id="form" class="form">
+        <label for="cardTitleInput">Card Title:</label>
+
+        <input type="text" id="cardTitleInput" class="card-title-input" required>
+
+        <label for="slider">Slider Value:</label>
+        <input type="range" id="slider" class="slider" min="0" max="100" value="50">
+        <output id="sliderValue" class="slider-value">50</output>
+        <button type="submit" id="submit" class="submit-button">Submit</button>
+    </form>
+
 
     <div id="cardContainer" class="container mt-5">
         <div class="row" id="cardRow">
         </div>
-    </div>
+    </div> -->
 
 
     <script>
@@ -109,6 +129,7 @@
         const slider = document.getElementById('slider');
         const sliderValue = document.getElementById('sliderValue');
         const cardRow = document.getElementById('cardRow');
+        const cardTitleInput = document.getElementById('cardTitleInput');
 
         // Show the popup when the "+" button is clicked
         addButton.addEventListener('click', () => {
@@ -125,23 +146,27 @@
             event.preventDefault();
             popup.style.display = 'none';
 
-            // Get the slider value
+            // Get the slider value and card title from the form
             const value = slider.value;
-            // resp = requests.get('http://localhost:5000/create_wallet?initial_balance=${value}')
-            // Create a Bootstrap card with the slider value
+            const title = cardTitleInput.value;
+
+            // Create a Bootstrap card with the slider value and card title
             const card = document.createElement('div');
             card.classList.add('col-md-4');
             card.innerHTML = `
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Wallet 1</h5>
-        <p class="card-text"><strong>Account Balance:</strong> $${value}</p>
-      </div>
-    </div>
-  `;
+			<div class="card">
+			  <div class="card-body">
+				<h5 class="card-title">${title}</h5>
+				<p class="card-text"><strong>Account Balance:</strong> ${value}</p>
+			  </div>
+			</div>
+		  `;
 
             // Add the card to the card row
             cardRow.appendChild(card);
+
+            // Reset the form
+            form.reset();
         });
     </script>
 </body>
