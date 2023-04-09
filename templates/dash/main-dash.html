@@ -92,24 +92,176 @@
             margin: 0;
             font-size: 14px;
         }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;900&display=swap');
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Noto Sans JP', sans-serif;
+}
+
+body{
+	background: #eeeff4;
+}
+
+.wrapper .header{
+	width: 100%;
+	height: 50px;
+	background: rgb(70, 117, 70);
+	color: #fff;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-weight: 900;
+}
+
+.cards_wrap{
+	padding: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.cards_wrap .card_item{
+	padding: 15px 25px;
+	width: 25%;
+}
+
+.cards_wrap .card_inner{
+	background: #fff;
+	border-radius: 5px;
+	padding: 35px 20px;
+	min-width: 225px;
+	min-height: 315px;
+	max-height: 370px;
+	width: 100%;
+}
+
+.cards_wrap .card_item img{
+	width: 80px;
+	height: 80px;
+	margin-bottom: 5px;
+}
+
+.cards_wrap .card_item .store_name{
+	color: rgb(70, 117, 70);
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	font-size: 20px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.cards_wrap .card_item .location{
+	color: #b6c0c2;
+	font-size: 15px;
+	font-weight: 100;
+	margin: 5px 0 10px;
+}
+
+.cards_wrap .card_item .description{
+	font-size: 14px;
+	line-height: 24px;
+	color: #7b8ca0;
+}
+
+@media screen and (max-width: 1024px){
+	.cards_wrap .card_item{
+		width: 33%;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.cards_wrap .card_item{
+		width: 50%;
+	}
+	.wrapper .header{
+		font-size: 16px;
+		height: 60px;
+	}
+}
+
+@media screen and (max-width: 568px){
+	.cards_wrap .card_item{
+		width: 100%;
+	}
+	.wrapper .header{
+		font-size: 14px;
+	}
+}
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>LocalLeaf Dashboard</title>
 </head>
 
 <body>
-    <div class="wrapper">
-        <nav id="sidebar" class="bg-dark">
-            <div class="sidebar-header">
-                <h3>LocalLeaf</h3>
-            </div>
-            <ul class="list-unstyled components">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
+    <div class="wrapper d-flex">
+        <!-- Sidebar -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+              <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-4">Sidebar</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                  Orders
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                  Products
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                  Customers
+                </a>
+              </li>
             </ul>
-        </nav>
-        <div id="content">
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+        <!-- Main Content -->
+        <div id="content" class="w-100" >
+            <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
                <i class="fas fa-align-left"></i>
@@ -201,9 +353,44 @@
                     </div>
                     {% endfor %}
                 </div>
+                <div class="cards_wrap">
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <img src="/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg">
+                            <div class="store_name">Green Market</div>
+                            <div class="location">Durham,NC</div>
+                            <div class="description">A grocery store specializing in locally-sourced, organic produce and sustainable household products..</div>
+                        </div>
+                    </div>
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <img src="/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg">
+                            <div class="store_name">Eco Essentials</div>
+                            <div class="location">Cary,NC</div>
+                            <div class="description">A store selling eco-friendly products, from reusable bags and water bottles to bamboo utensils and natural cleaning supplies.</div>
+                        </div>
+                    </div>
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <img src="/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg">
+                            <div class="store_name">The Refillery</div>
+                            <div class="location">Zebulon,NC</div>
+                            <div class="description">A shop focused on reducing waste by selling bulk goods like grains, spices, and soaps, encouraging customers to bring their own containers.</div>
+                        </div>
+                    </div>
+                    <div class="card_item">
+                        <div class="card_inner">
+                            <img src="/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg">
+                            <div class="store_name">Sustainably Chic</div>
+                            <div class="location">Morrisville,NC</div>
+                            <div class="description"> A boutique offering ethically-made, stylish clothing and accessories made from sustainable materials.</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <!-- Footer -->
             </div>
-        </div>
+    </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
