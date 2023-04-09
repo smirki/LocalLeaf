@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,render_template, request
+
 # from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
@@ -21,9 +22,12 @@ app = Flask(__name__)
 
 @app.route('/register', methods=['POST'])
 def register_user():
-    user1 = User("alanka","ayushlanka106@gmail.com","pass")
+    user1 = User()
+    user1.set_username(request.form['logeuser'])
+    user1.set_email(request.form['logemail'])
+    user1.set_password(request.form['logpass'])
     info.insert_one(user1.__dict__)
-    return "200"
+    return render_template('auth/sign-up.html')
 
 @app.route('/find', methods=['GET'])
 def is_registered():
@@ -122,6 +126,20 @@ def is_registered():
 #         return jsonify({"status": "success", "message": "Login successful"}), 200
 #     else:
 #         return jsonify({"status": "failure", "message": "Invalid email or password"}), 401
+@app.route('/')
+@app.route('/index')
+def home():
+    return render_template('index.html')
+
+@app.route('/signup')
+def signup():
+	return render_template('auth/sign-up.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    account_type = request.form['account-type']
+    return f'Thank you for signing up as a {account_type}!'
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,8 +1,12 @@
-class User:
+class Company:
     def __init__(self):
-        self.username = ""
-        self.password = ""
-        self.email = ""
+        self.company_name = ""
+        self.location = ""
+        self.website = ""
+        self.about = ""
+        self.sustainability_score = ""
+        self.transactions = []
+        
 
     def get_username(self):
         return self.username
