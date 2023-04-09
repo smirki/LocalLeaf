@@ -1,8 +1,9 @@
 class User:
-    def __init__(self,username,email,password):
+    def __init__(self,username,email,password, score=0):
         self.username = username
         self.email = email
         self.password = password
+        self.score = score
         
 
     def get_username(self):
