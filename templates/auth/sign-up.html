@@ -6,118 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="https://unpkg.com/@popperjs/core@2">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
     <title>Document</title>
 </head>
 
-<body>
 
-    <body>
-        <!-- partial:index.partial.html -->
-        <!-- Multi step form -->
-        <section class="multi_step_form">
-            <form id="msform">
-                <!-- Tittle -->
-                <div class="tittle">
-                    <h2>Verification Process</h2>
-                    <p>In order to use this service, you have to complete this verification process</p>
+
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                        <h1>Are You A...</h1>
+                        <h6 class="mb-0 pb-3"><span>Consumer </span><span>Business</span></h6> <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" /> <label for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Consumer sign-up</h4>
+                                            <div class="form-group"> <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="none"> <i class="input-icon fa fa-at"></i> </div>
+                                            <div class="form-group mt-2"> <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a href="#" class="btn mt-4">Login</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">Business sign-up</h4>
+                                            <div class="form-group"> <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="none"> <i class="input-icon fa fa-user"></i> </div>
+                                            <div class="form-group mt-2"> <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="none"> <i class="input-icon fa fa-at"></i> </div>
+                                            <div class="form-group mt-2"> <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a href="#" class="btn mt-4">Signup</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- progressbar -->
-                <ul id="progressbar">
-                    <li class="active">Verify Phone</li>
-                    <li>Upload Documents</li>
-                    <li>Security Questions</li>
-                </ul>
-                <!-- fieldsets -->
-                <fieldset>
-                    <h3>Setup your phone</h3>
-                    <h6>We will send you a SMS. Input the code to verify.</h6>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input type="tel" id="phone" class="form-control" placeholder="+880">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="1123456789">
-                        </div>
-                    </div>
-                    <div class="done_text">
-                        <a href="#" class="don_icon"><i class="ion-android-done"></i></a>
-                        <h6>A secret code is sent to your phone. <br>Please enter it here.</h6>
-                    </div>
-                    <div class="code_group">
-                        <input type="text" class="form-control" placeholder="0">
-                        <input type="text" class="form-control" placeholder="0">
-                        <input type="text" class="form-control" placeholder="0">
-                        <input type="text" class="form-control" placeholder="0">
-                    </div>
-                    <button type="button" class="action-button previous_button">Back</button>
-                    <button type="button" class="next action-button">Continue</button>
-                </fieldset>
-                <fieldset>
-                    <h3>Verify Your Identity</h3>
-                    <h6>Please upload any of these documents to verify your Identity.</h6>
-                    <div class="passport">
-                        <h4>Govt. ID card <br>PassPort <br>Driving License.</h4>
-                        <a href="#" class="don_icon"><i class="ion-android-done"></i></a>
-                    </div>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="upload">
-                            <label class="custom-file-label" for="upload"><i
-                                    class="ion-android-cloud-outline"></i>Choose file</label>
-                        </div>
-                    </div>
-                    <ul class="file_added">
-                        <li>File Added:</li>
-                        <li><a href="#"><i class="ion-paperclip"></i>national_id_card.png</a></li>
-                        <li><a href="#"><i class="ion-paperclip"></i>national_id_card_back.png</a></li>
-                    </ul>
-                    <button type="button" class="action-button previous previous_button">Back</button>
-                    <button type="button" class="next action-button">Continue</button>
-                </fieldset>
-                <fieldset>
-                    <h3>Create Security Questions</h3>
-                    <h6>Please update your account with security questions</h6>
-                    <div class="form-group">
-                        <select class="product_select">
-                            <option data-display="1. Choose A Question">1. Choose A Question</option>
-                            <option>2. Choose A Question</option>
-                            <option>3. Choose A Question</option>
-                        </select>
-                    </div>
-                    <div class="form-group fg_2">
-                        <input type="text" class="form-control" placeholder="Anwser here:">
-                    </div>
-                    <div class="form-group">
-                        <select class="product_select">
-                            <option data-display="1. Choose A Question">1. Choose A Question</option>
-                            <option>2. Choose A Question</option>
-                            <option>3. Choose A Question</option>
-                        </select>
-                    </div>
-                    <div class="form-group fg_3">
-                        <input type="text" class="form-control" placeholder="Anwser here:">
-                    </div>
-                    <button type="button" class="action-button previous previous_button">Back</button>
-                    <a href="#" class="action-button">Finish</a>
-                </fieldset>
-            </form>
-        </section>
-        <!-- End Multi step form -->
-        <!-- partial -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/js/intlTelInput.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js'></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='js/stepper.js') }}">
-    </body>
+            </div>
+        </div>
+    </div>
+</body>
 
 </html>
