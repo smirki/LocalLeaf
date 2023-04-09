@@ -41,6 +41,7 @@ def get_balance():
 
 @app.route('/create_wallet', methods=['GET'])
 def create_wallet():
+    print("hi")
     initial_balance = request.args.get('initial_balance', default=0, type=int)
     wallet = Wallet(initial_balance=initial_balance)
     wallets.add_wallet(wallet)
@@ -73,6 +74,20 @@ def send_transaction():
         return "success", 201
     else:
         return "failed", 500
+
+@app.route('/get_block_info', methods=['GET'])
+def get_block_info():
+    index = request.args.get('index', type=int)
+    block_info = blockchain.get_block_info(index)
+    if block_info is not None:
+        return jsonify(block_info)
+    else:
+        return "block not found", 404
+
+@app.route('/get_market_cap', methods=['GET'])
+def get_market_cap():
+    market_cap = blockchain.get_market_cap()
+    return jsonify({"market_cap": market_cap})
 
 
 app.run(debug=True, port=5000)
