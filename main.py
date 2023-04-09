@@ -38,7 +38,13 @@ def register_company():
         request.form["about"],
     )
     info.insert_one(company.__dict__)
+
+    return render_template('auth/sign-up.html')
+   
+    
+
     return render_template("auth/sign-up.html")
+
 
 
 
