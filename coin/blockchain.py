@@ -6,7 +6,7 @@ from wallets import *
 import json
 import binascii
 
-BLOCK_REWARD = 4
+BLOCK_REWARD = 1
 
 class Blockchain:
     def __init__(self, wallets):
@@ -15,6 +15,7 @@ class Blockchain:
         self.create_genesis_block()
         self.wallets = wallets
         self.wallet = Wallet()
+        self.total_supply = 0
 
     def create_genesis_block(self):
         genesis_block = Block(0, [], time.time(), "0")
@@ -76,18 +77,36 @@ class Blockchain:
 
         return True
 
+    def get_block_info(self, index):
+        if index >= len(self.chain):
+            return None
+
+        block = self.chain[index]
+        return {
+            "index": block.index,
+            "transactions": block.transactions,
+            "timestamp": block.timestamp,
+            "previous_hash": block.previous_hash,
+            "hash": block.block_hash,
+            "nonce": block.nonce
+        }
+
+    def get_market_cap(self):
+        return self.total_supply
+
     def mine(self, miner):
         if not self.unconfirmed_transactions:
             return False
-        
+
         last_block = self.last_block
-
-        new_block = Block(index=last_block.index + 1, transactions = self.unconfirmed_transactions, timestamp = time.time(), previous_hash = last_block.block_hash)
-
+        new_block = Block(index=last_block.index + 1, transactions=self.unconfirmed_transactions, timestamp=time.time(), previous_hash=last_block.block_hash)
         proof = self.proof_of_work(new_block)
-
         self.add_block(new_block, proof)
+
+        # Update the total supply and miner's balance
+        self.total_supply += BLOCK_REWARD
         self.wallets.get_wallet(miner).add_balance(BLOCK_REWARD)
+
         self.unconfirmed_transactions = []
         return new_block.index
     
