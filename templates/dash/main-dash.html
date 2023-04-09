@@ -6,7 +6,7 @@
       <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: #fafafa;
+            background: rgb(255, 255, 255);
         }
         .wrapper {
     display: flex;
@@ -58,11 +58,11 @@
     transition: all 0.3s;
 }
 
-.hero {
+.store {
     margin-bottom: 20px;
 }
 
-.hero img {
+.store img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -101,6 +101,7 @@ footer p {
       <!-- Sidebar -->
       <nav id="sidebar" class="bg-dark">
          <div class="sidebar-header">
+            <i class="fa-solid fa-leaf fa-2xl col-md-8 text-center logo" style="color: #28763c;"></i>
             <h3>LocalLeaf</h3>
          </div>
          <ul class="list-unstyled components">
@@ -115,7 +116,7 @@ footer p {
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
+            <span>Hide Sidebar</span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto">
@@ -127,39 +128,13 @@ footer p {
          </nav>
          <!-- Page Content -->
          <div class="container">
-            <h1 class="my-3">LocalLeaf Dashboard</h1>
-            <!-- UserScore Speedometer -->
+            <div class="d-flex align-items-center">
+
+            <h1 class="my-3">User Dashboard</h1>
+            <!-- Loyalty Score -->
             <div class="userscore-speedometer my-3">
                <div id="userscore_chart"></div>
             </div>
-            
-            <!-- Credit Factors -->
-            <div class="row">
-               <div class="col-sm-6">
-                  <div class="card">
-                     <div class="card-body">
-                        <h5 class="card-title">Credit Factors</h5>
-                        <ul class="list-group">
-                           {% for factor in credit_factors %}
-                           <li class="list-group-item">{{ factor }}</li>
-                           {% endfor %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <!-- Tips -->
-               <div class="col-sm-6">
-                  <div class="card">
-                     <div class="card-body">
-                        <h5 class="card-title">Tips</h5>
-                        <ul class="list-group">
-                           {% for tip in tips %}
-                           <li class="list-group-item">{{ tip }}</li>
-                           {% endfor %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
             </div>
             <!-- Recent Spending -->
             <div class="row">
@@ -223,7 +198,7 @@ footer p {
          function drawUserscoreChart() {
              let data = google.visualization.arrayToDataTable([
                  ['Label', 'Value'],
-                 ['UserScore', 700], // Replace the 0 with the actual userscore
+                 ['UserScore', 700], 
              ]);
          
              // Set chart options
@@ -250,6 +225,11 @@ footer p {
          $(document).ready(function () {
              $('#sidebarCollapse').on('click', function () {
                  $('#sidebar').toggleClass('active');
+                 if ($('#sidebar').hasClass('active')) {
+            $('#sidebarCollapse').text('Show Sidebar');
+        } else {
+            $('#sidebarCollapse').text('Hide Sidebar');
+        }
              });
          });
       </script>
