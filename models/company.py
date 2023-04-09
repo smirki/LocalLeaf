@@ -1,12 +1,12 @@
 class Company:
-    def __init__(self):
-        self.company_name = ""
-        self.location = ""
-        self.website = ""
-        self.about = ""
+    def __init__(self,company_name,location,website,about):
+        self.company_name = company_name
+        self.location = location
+        self.website = website
+        self.about = about
         self.sustainability_score = ""
         self.transactions = []
-        
+
 
     def get_username(self):
         return self.username

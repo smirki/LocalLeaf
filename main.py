@@ -8,6 +8,7 @@ from hashlib import sha256
 import json
 from jsonschema import validate, ValidationError
 from models.user import User
+from models.company import Company
 
 client = pymongo.MongoClient('mongodb+srv://LocalLeaf:LoGalLea88@localleaf.eqqtjs0.mongodb.net/?retryWrites=true&w=majority')
 db = client.LocalLeaf
@@ -20,13 +21,19 @@ app = Flask(__name__)
 
 
 
-@app.route('/register', methods=['POST'])
-def register_user():
-    user1 = User()
-    user1.set_username(request.form['logeuser'])
-    user1.set_email(request.form['logemail'])
-    user1.set_password(request.form['logpass'])
-    info.insert_one(user1.__dict__)
+@app.route('/register-client', methods=['POST'])
+def register_client():
+    user = User(request.form['logeuser'],request.form['logemail'],request.form['logpass'])
+    info.insert_one(user.__dict__)
+    return render_template('auth/sign-up.html')
+ 
+@app.route('/register-company', methods=['POST'])
+def register_company():
+    company = Company(request.form['company_name'],request.form['location'],request.form['website'],request.form['about'])
+    info.insert_one(company.__dict__)
+    return render_template('auth/sign-up.html')
+   
+    
     return render_template('auth/sign-up.html')
 
 @app.route('/find', methods=['GET'])
@@ -34,7 +41,22 @@ def is_registered():
     if info.find_one({ "username": "alanka" }).count() > 0:
         return "200"
     return "-1"
-    # return "200";
+
+@app.route('/login', methods=['POST'])
+def login():
+    logemail = "n"
+    logpass = "majnju@gmail.com"
+        
+        # Query the MongoDB collection to check for matching user account
+    user = info.find_one({'email': logemail, 'password': logpass})
+    if user:
+        return render_template('dash/main-dash.html')
+    else:
+            # User account not found, show error message
+        return render_template('index.html')
+
+        # Render login form page
+    
 
 
 # def validate_data(data, schema):
