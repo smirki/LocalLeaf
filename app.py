@@ -16,6 +16,10 @@ def home():
 def signup():
 	return render_template('auth/sign-up.html')
 
+@app.route('/user')
+def user_dash():
+	return render_template('auth/user-dash.html')
+
 @app.route('/submit', methods=['POST'])
 def submit():
     account_type = request.form['account-type']
