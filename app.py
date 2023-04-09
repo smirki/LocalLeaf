@@ -21,7 +21,6 @@ app = Flask(__name__)
 
 @app.route('/dashboard')
 def dashboard():
-    # Example data for dashboard
     local_stores = [
         {'name': 'Store 1', 'description': 'A great store!', 'url': 'https://www.store1.com', 'image': 'https://www.example.com/store1.jpg'},
         {'name': 'Store 2', 'description': 'Another great store!', 'url': 'https://www.store2.com', 'image': 'https://www.example.com/store2.jpg'},
