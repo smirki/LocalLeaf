@@ -6,7 +6,7 @@ LocalLeaf is a blockchain-based loyalty coin system that aims to provide a susta
 📝 Whitepaper
 -------------
 
-For technical details about LocalLeaf, please refer to our [whitepaper](https://chat.openai.com/whitepaper.pdf).
+For technical details about LocalLeaf, please refer to our [whitepaper](https://github.com/smirki/LocalLeaf/blob/main/coin/whitepaper/LocalLeaf.pdf).
 
 🚀 Getting Started
 ------------------
@@ -21,7 +21,7 @@ At LocalLeaf, we are committed to promoting sustainability and reducing our envi
 💻 Developers
 -------------
 
-If you are a developer interested in contributing to LocalLeaf, please check out our [GitHub repository](https://github.com/LocalLeaf) for more information.
+If you are a developer interested in contributing to LocalLeaf, please check out our [GitHub repository](https://github.com/smirki/LocalLeaf) for more information.
 
 📧 Contact Us
 -------------
