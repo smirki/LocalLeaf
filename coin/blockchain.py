@@ -67,7 +67,6 @@ class Blockchain:
         transaction = {"sender": sender, "recipient": recipient, "amount": amount, "signature": signature}
         self.unconfirmed_transactions.append(transaction)
 
-
         recipient_wallet.add_balance(amount)
 
         return True
