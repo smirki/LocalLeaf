@@ -24,7 +24,7 @@
                         <div class="card-3d-wrap mx-auto">
                             <div class="card-3d-wrapper">
 
-                                <div class="card-front">
+                                <div class="card-front" style="padding-top: 700px;">
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Consumer sign-up</h4>
@@ -65,19 +65,46 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="card-back">
+                                <div class="card-back" style="padding-top: 700px;">
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Business sign-up</h4>
                                             <i class="fa-solid fa-leaf fa-2xl col-md-8 text-center logo" style="color: #28763c;"></i>
-                                            <div class="form-group"> <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="none"> <i class="input-icon fa fa-user"></i> </div>
-                                            <div class="form-group mt-2"> <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="none"> <i class="input-icon fa fa-at"></i> </div>
-                                            <div class="form-group mt-2"> <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="none"> <i class="input-icon fa fa-lock"></i> </div> <a href="#" class="btn mt-4">Signup</a>
-                                            <h7 class="mb-4 pb-3">Already have an account? <a href="index">Login
-                                                    In</a></h7>
+                                            <form method="POST" action="/submit">
+                                                <div class="form-group">
+                                                    <input type="text" name="company_name" class="form-style" placeholder="Company Name" id="company_name" autocomplete="none">
+                                                    <i class="input-icon fa fa-user"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="text" name="location" class="form-style" placeholder="Location" id="location" autocomplete="none">
+                                                    <i class="input-icon fa fa-map-marker-alt"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="text" name="website" class="form-style" placeholder="Website" id="website" autocomplete="none">
+                                                    <i class="input-icon fa fa-globe"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <textarea name="about" class="form-style" placeholder="About" id="about"></textarea>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="number" name="phone_number" class="form-style" placeholder="Phone Number" id="phone_number" autocomplete="none">
+                                                    <i class="input-icon fa fa-phone"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" name="password" class="form-style" placeholder="Password" id="password" autocomplete="none">
+                                                    <i class="input-icon fa fa-lock"></i>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="email" name="email" class="form-style" placeholder="Email" id="email" autocomplete="none">
+                                                    <i class="input-icon fa fa-at"></i>
+                                                </div>
+                                                <input type="submit" value="Signup" class="btn btn-primary mt-4">
+                                            </form>
+                                            <h7 class="mb-4 pb-3">Already have an account? <a href="{{ url_for('home') }}">Login In</a></h7>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
