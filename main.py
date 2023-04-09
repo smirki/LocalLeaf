@@ -15,38 +15,23 @@ info = db.auth
 
 app = Flask(__name__)
 
-personDocument = {
-  "name": { "first": "Alan", "last": "Turing" },
-  "views": 1250000
-}
-
-# n = {
-    
-# 	"email": "ayuhs",
-# 	"password": "pass"
-
-# }
-
-user1 = User("alanka","ayushlanka106@gmail.com","pass")
 
 
 
 
-
-
-
-@app.route('/insert', methods=['POST'])
-def insertOne():
-    
-
-    # content_type = request.headers.get('Content-Type')
-    # if (content_type == 'application/json'):
-    #     json = request.json
-    #     print(json)
-    #     info.insert_one(json)
-    jsonconvert = json.loads(user1.__dict__)
-    info.insert_one(jsonconvert)
+@app.route('/register', methods=['POST'])
+def register_user():
+    user1 = User("alanka","ayushlanka106@gmail.com","pass")
+    info.insert_one(user1.__dict__)
     return "200"
+
+@app.route('/find', methods=['GET'])
+def is_registered():
+    if info.find_one({ "username": "alanka" }).count() > 0:
+        return "200"
+    return "-1"
+    # return "200";
+
 
 # def validate_data(data, schema):
 #     try:
