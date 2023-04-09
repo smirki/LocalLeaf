@@ -44,18 +44,18 @@ def is_registered():
 
 @app.route('/login', methods=['POST'])
 def login():
-    logemail = "n"
-    logpass = "majnju@gmail.com"
+    logemail = request.form['logemail']
+    logpass = request.form['logpass']
         
-        # Query the MongoDB collection to check for matching user account
+      
     user = info.find_one({'email': logemail, 'password': logpass})
     if user:
         return render_template('dash/main-dash.html')
     else:
-            # User account not found, show error message
+           
         return render_template('index.html')
 
-        # Render login form page
+       
     
 
 
