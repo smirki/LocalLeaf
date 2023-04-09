@@ -34,7 +34,6 @@ def register_company():
     return render_template('auth/sign-up.html')
    
     
-    return render_template('auth/sign-up.html')
 
 @app.route('/find', methods=['GET'])
 def is_registered():

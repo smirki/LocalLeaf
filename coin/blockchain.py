@@ -49,13 +49,11 @@ class Blockchain:
         return (block_hash.startswith('0' * Blockchain.difficulty) and block_hash == block.compute_hash())
     
     def add_new_transaction(self, sender, recipient, amount, signature):
-        # Check if sender and recipient exist in wallets
         sender_wallet = self.wallets.get_wallet(sender)
         recipient_wallet = self.wallets.get_wallet(recipient)
         if not sender_wallet or not recipient_wallet:
             return False
 
-        # Verify the transaction signature
         try:
             public_key = VerifyingKey.from_string(bytes.fromhex(sender), curve=ecdsa.SECP256k1)
             if not public_key.verify(binascii.unhexlify(signature), json.dumps({"sender": sender, "recipient": recipient, "amount": amount}).encode()):
@@ -63,16 +61,13 @@ class Blockchain:
         except BadSignatureError:
             return False
 
-        # Check if amount is valid and greater than zero
         if amount <= 0:
             return False
 
-        # Add the transaction to the unconfirmed transactions list
         transaction = {"sender": sender, "recipient": recipient, "amount": amount, "signature": signature}
         self.unconfirmed_transactions.append(transaction)
 
-        # Update sender's and recipient's balances
-        # sender_wallet.subtract_balance(amount)
+
         recipient_wallet.add_balance(amount)
 
         return True
@@ -102,8 +97,6 @@ class Blockchain:
         new_block = Block(index=last_block.index + 1, transactions=self.unconfirmed_transactions, timestamp=time.time(), previous_hash=last_block.block_hash)
         proof = self.proof_of_work(new_block)
         self.add_block(new_block, proof)
-
-        # Update the total supply and miner's balance
         self.total_supply += BLOCK_REWARD
         self.wallets.get_wallet(miner).add_balance(BLOCK_REWARD)
 
