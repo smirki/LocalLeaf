@@ -23,11 +23,25 @@ app = Flask(__name__)
 @app.route("/register-client", methods=["POST"])
 def register_client():
     user = User(
-        request.form["logeuser"], request.form["logemail"], request.form["logpass"]
+        request.form["logeuser"], request.form["logemail"], request.form["logpass"], score=0
     )
     info.insert_one(user.__dict__)
     return render_template("auth/sign-up.html")
 
+
+@app.route('/update-score', methods=['POST'])
+def update_score():
+    user_email = request.form['user_email']
+    new_score = request.form['new_score']
+
+    info.update_one({"email": user_email}, {"$set": {"score": new_score}})
+
+    return "Score updated successfully", 200
+
+@app.route('/update-score-page', methods=['GET'])
+def update_score_page():
+    user_email = request.args.get('user_email')
+    return render_template('dash/update_score.html', user_email=user_email)
 
 @app.route("/register-company", methods=["POST"])
 def register_company():
@@ -46,15 +60,6 @@ def register_company():
     return render_template("auth/sign-up.html")
 
 
-
-
-@app.route("/find", methods=["GET"])
-def is_registered():
-    if info.find_one({"username": "alanka"}).count() > 0:
-        return "200"
-    return "-1"
-
-
 @app.route("/login", methods=["POST"])
 def login():
     logemail = request.form["logemail"]
@@ -63,9 +68,10 @@ def login():
     user = info.find_one({"email": logemail, "password": logpass})
     if user:
         local_stores = [
-        {'name': 'Store 1', 'description': 'A great store!', 'url': 'https://www.store1.com', 'image': 'https://www.example.com/store1.jpg'},
-        {'name': 'Store 2', 'description': 'Another great store!', 'url': 'https://www.store2.com', 'image': 'https://www.example.com/store2.jpg'},
-        {'name': 'Store 3', 'description': 'Yet another great store!', 'url': 'https://www.store3.com', 'image': 'https://www.example.com/store3.jpg'}
+        {'name': 'Green Market', 'location': 'Durham,NC', 'description': 'A grocery store specializing in locally-sourced, organic produce and sustainable household products.', 'url': 'https://www.greenmarket.com', 'image': '/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg'},
+        {'name': 'Eco Essentials', 'location': 'Cary,NC', 'description': 'A store selling eco-friendly products, from reusable bags and water bottles to bamboo utensils and natural cleaning supplies.', 'url': 'https://www.ecoessentials.com', 'image': '/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg'},
+        {'name': 'The Refillery', 'location': 'Zebulon,NC', 'description': 'A shop focused on reducing waste by selling bulk goods like grains, spices, and soaps, encouraging customers to bring their own containers.', 'url': 'https://www.therefillery.com', 'image': '/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg'},
+        {'name': 'Sustainably Chic', 'location': 'Morrisville,NC', 'description': 'A boutique offering ethically-made, stylish clothing and accessories made from sustainable materials.', 'url': 'https://www.sustainablychic.com', 'image': '/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg'}
         ]
         recent_transactions = [
             {'store': 'Store 1', 'amount': 50.00, 'date': '2023-04-01'},
@@ -74,18 +80,19 @@ def login():
             {'store': 'Store 1', 'amount': 75.00, 'date': '2023-03-29'},
             {'store': 'Store 2', 'amount': 20.00, 'date': '2023-03-28'}
         ]
-        credit_factors = [
-            'Pay bills on time',
-            'Keep credit utilization low',
-            'Don\'t open too many new accounts',
-            'Maintain a long credit history'
+        crypto_factors = [
+            'Hold LocalLeaf coin for long-term growth',
+            'Keep an eye on market trends',
+            'Diversify your cryptocurrency investments',
+            'Stay informed about LocalLeaf coin developments'
         ]
-        tips = [
-            'Use credit for everyday purchases to build credit',
-            'Set up automatic payments to avoid missed payments',
-            'Check your credit report regularly for errors'
+
+        crypto_tips = [
+            'Use LocalLeaf coin for everyday purchases to support local businesses',
+            'Set up a secure wallet to store your LocalLeaf coins',
+            'Research and follow LocalLeaf coin updates and news'
         ]
-        return render_template('dash/main-dash.html', local_stores=local_stores, recent_transactions=recent_transactions, credit_factors=credit_factors, tips=tips)
+        return render_template('dash/main-dash.html', user_name=user['username'], user_score=750, local_stores=local_stores, recent_transactions=recent_transactions, credit_factors=crypto_factors, tips=crypto_tips)
     else:
 
         return render_template("index.html")
