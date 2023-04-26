@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template, request
-
 # from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
@@ -107,6 +106,10 @@ def home():
 @app.route("/signup")
 def signup():
     return render_template("auth/sign-up.html")
+
+@app.route("/wallet")
+def wallet_page():
+    return render_template("wallet.html")
 
 
 @app.route("/submit", methods=["POST"])
