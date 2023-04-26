@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify, render_template, request
-# from flask_pymongo import PyMongo
+from flask import Flask, request, jsonify, render_template, request, redirect
 import pymongo
 from pymongo import MongoClient
 from bson.json_util import dumps
@@ -8,16 +7,40 @@ import json
 from jsonschema import validate, ValidationError
 from models.user import User
 from models.company import Company
+from bson import ObjectId
+from models.wallet import Wallet
+from flask_bootstrap import Bootstrap
+import os
 
 client = pymongo.MongoClient(
     "mongodb+srv://LocalLeaf:LoGalLea88@localleaf.eqqtjs0.mongodb.net/?retryWrites=true&w=majority"
 )
 db = client.LocalLeaf
 info = db.auth
+wallet = db.wallets
+SECRET_KEYS = os.urandom(32)
 
 
 app = Flask(__name__)
+Bootstrap(app)
 
+
+
+
+@app.route('/wallet')
+def get_user_wallets(): 
+    user = info.find_one({"_id": ObjectId("6432a23c70880264118f5c35")})
+    user_wallets = wallet.find({"user_id": "6432a23c70880264118f5c35"})
+    return render_template('wallet.html', auth=user['username'], wallets=user_wallets)
+
+@app.route('/add-wallet', methods=['POST'])
+def add_wallet():
+
+    new_wallet =  Wallet(
+        '6432a23c70880264118f5c35',request.form["wallet_name"], request.form["balance"]
+    )
+    wallet.insert_one(new_wallet.__dict__)
+    return redirect('wallet')
 
 @app.route("/register-client", methods=["POST"])
 def register_client():
@@ -54,9 +77,7 @@ def register_company():
 
     return render_template('auth/sign-up.html')
    
-    
 
-    return render_template("auth/sign-up.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -107,9 +128,9 @@ def home():
 def signup():
     return render_template("auth/sign-up.html")
 
-@app.route("/wallet")
-def wallet_page():
-    return render_template("wallet.html")
+# @app.route("/wallet")
+# def wallet_page():
+#     return render_template("wallet.html")
 
 
 @app.route("/submit", methods=["POST"])
