@@ -18,7 +18,8 @@ client = pymongo.MongoClient(
 db = client.LocalLeaf
 info = db.auth
 wallet = db.wallets
-SECRET_KEYS = os.urandom(32)
+
+
 
 
 app = Flask(__name__)
@@ -27,10 +28,12 @@ Bootstrap(app)
 
 
 
-@app.route('/wallet')
-def get_user_wallets(): 
-    user = info.find_one({"_id": ObjectId("6432a23c70880264118f5c35")})
-    user_wallets = wallet.find({"user_id": "6432a23c70880264118f5c35"})
+
+@app.route('/wallet/<username>')
+def get_user_wallets(username): 
+    
+    user = info.find_one({"username": username})
+    user_wallets = wallet.find({"user_id":  str(user["_id"])})
     return render_template('wallet.html', auth=user['username'], wallets=user_wallets)
 
 @app.route('/add-wallet', methods=['POST'])
@@ -82,10 +85,12 @@ def register_company():
 
 @app.route("/login", methods=["POST"])
 def login():
+
     logemail = request.form["logemail"]
     logpass = request.form["logpass"]
 
     user = info.find_one({"email": logemail, "password": logpass})
+  
     if user:
         local_stores = [
         {'name': 'Green Market', 'location': 'Durham,NC', 'description': 'A grocery store specializing in locally-sourced, organic produce and sustainable household products.', 'url': 'https://www.greenmarket.com', 'image': '/Users/Vrishank/Desktop/Hack_NC /hackstate/templates/green.jpeg'},

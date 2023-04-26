@@ -1,4 +1,7 @@
 class User:
+
+  
+
     def __init__(self,username,email,password,  wallets,score=0):
         self.username = username
         self.email = email
